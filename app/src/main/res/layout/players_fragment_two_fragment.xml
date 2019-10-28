@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="abdallah.qasem.basketballplayers.view.viewPager.fragments.PlayersFragmentTwoViewModel" />
+            type="abdallah.qasem.basketballplayers.view.viewPager.fragments.PlayersViewModel" />
 
 
 

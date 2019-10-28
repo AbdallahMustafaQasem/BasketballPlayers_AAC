@@ -18,13 +18,12 @@ import android.view.ViewGroup;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.PlayersFragmentTwoFragmentBinding;
-import abdallah.qasem.basketballplayers.databinding.PlyaersFragmentBinding;
 import abdallah.qasem.basketballplayers.view.adapters.PlayersAdapter;
 
 public class PlayersFragmentTwo extends Fragment {
 
     PlayersFragmentTwoFragmentBinding binding ;
-    private PlayersFragmentTwoViewModel mViewModel;
+    private PlayersViewModel mViewModel;
 
 
 
@@ -56,7 +55,7 @@ public class PlayersFragmentTwo extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(PlayersFragmentTwoViewModel.class);
+        mViewModel = ViewModelProviders.of(getActivity()).get(PlayersViewModel.class);
 
         binding.setViewModel(mViewModel);
         binding.setLifecycleOwner(this);
