@@ -14,7 +14,7 @@ import abdallah.qasem.basketballplayers.viewModels.MainActivityViewModel;
 
 
 public class MainActivity extends AppCompatActivity {
-
+// test push
 
     LinearLayoutManager linerLayoutManager;
     private MainActivityViewModel mMainActivityViewModel;
