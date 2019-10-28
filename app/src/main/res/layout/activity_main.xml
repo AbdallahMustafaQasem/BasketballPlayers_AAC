@@ -13,14 +13,14 @@
 
         <variable
             name="bindingMainActivity"
-            type="abdallah.qasem.basketballplayers.view.BindingMainActivity" />
+            type="abdallah.qasem.basketballplayers.view.mainScreen.BindingMainActivity" />
 
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.MainActivity">
+        tools:context=".view.mainScreen.MainActivity">
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.view;
+package abdallah.qasem.basketballplayers.view.mainScreen;
 
 
 

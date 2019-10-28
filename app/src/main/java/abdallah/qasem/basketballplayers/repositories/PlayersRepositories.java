@@ -2,6 +2,8 @@ package abdallah.qasem.basketballplayers.repositories;
 
 
 
+import android.util.Log;
+
 import androidx.lifecycle.AndroidViewModel;
 
 import abdallah.qasem.basketballplayers.models.PlayersData;
@@ -31,6 +33,8 @@ public class PlayersRepositories {
 
     public void getPlayersData(final int page, String per_page, OperationCallBack callBack) {
 
+
+        Log.e( "  getPlayersData " , " getPlayersData  ")  ;
 
         this.operationCallBack = callBack;
         if (operationCallBack!=null)

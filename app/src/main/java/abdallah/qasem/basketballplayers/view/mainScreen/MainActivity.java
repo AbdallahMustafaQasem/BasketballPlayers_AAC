@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.view;
+package abdallah.qasem.basketballplayers.view.mainScreen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         binding.recycler.setLayoutManager(linerLayoutManager);
         binding.recycler.setAdapter(playersAdapter);
     }
+
+
+
 
 
 }
