@@ -33,10 +33,8 @@ public class BindingMainActivity {
 
     @BindingAdapter({"android:attachedProgressBar"})
     public static void setAttachedProgressBar(ProgressBar view, boolean loading) {
-
         if (loading) {
             view.setVisibility(View.VISIBLE);
-
         }else {
             view.setVisibility(View.GONE);
 

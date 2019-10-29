@@ -3,9 +3,7 @@ package abdallah.qasem.basketballplayers.view.mainScreen;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
@@ -45,7 +43,6 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
             repositories.getPlayersData(page, per_page, this);
     }
 
-
     @Override
     public void startLoading(int page) {
         if (page == 1)
@@ -66,14 +63,9 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
     @Override
     public void onError() {
 
-
     }
 
-
-
     public void onClick(View view) {
-
-        Log.e( "  VM  " , "   onClick   ") ;
         Context context = view.getContext();
         Intent intent = new Intent(context, PagerActivity.class);
         context.startActivity(intent);

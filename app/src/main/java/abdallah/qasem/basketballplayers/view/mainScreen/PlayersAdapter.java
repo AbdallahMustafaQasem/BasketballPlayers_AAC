@@ -18,20 +18,16 @@ import abdallah.qasem.basketballplayers.models.LoadingItem;
 public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<Object> itemList;
-
     private static final int TYPE_LIST_ITEM = 1;
     private static final int TYPE_LOADING = 2;
 
 
     public PlayersAdapter () {
         this.itemList = new ArrayList<>();
-
-
     }
 
     @Override
     public int getItemViewType(int position) {
-
         if (itemList.get(position) instanceof Datum) {
             return TYPE_LIST_ITEM;
         } else if (itemList.get(position) instanceof LoadingItem) {
@@ -39,28 +35,21 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
         return 0;
     }
-
     public void setItems(List<Datum> data) {
         //add items and notify
         itemList.addAll(data);
         itemList.add(new LoadingItem());
         notifyDataSetChanged();
-
-
     }
     public void removeLoadingIndicator () {
         //add items and notify
         itemList.remove(itemList.size() - 1);
         notifyDataSetChanged();
-
-
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
         View view;
         switch (viewType) {
 
@@ -68,9 +57,6 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 RowPlayersBinding binding =
                         DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
                                 , R.layout.row_players, parent, false);
-
-
-
 
 
                 return new PlayerViewHolder(binding);
@@ -87,7 +73,6 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
 
         if (holder instanceof PlayerViewHolder) {
             PlayerViewHolder viewHolder = (PlayerViewHolder) holder;
