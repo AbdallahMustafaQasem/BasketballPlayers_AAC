@@ -1,19 +1,16 @@
 package abdallah.qasem.basketballplayers.view.mainScreen;
 
-import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.RowPlayersBinding;
-
 import abdallah.qasem.basketballplayers.models.Datum;
 import abdallah.qasem.basketballplayers.models.LoadingItem;
 
@@ -22,10 +19,8 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private ArrayList<Object> itemList;
 
-
     private static final int TYPE_LIST_ITEM = 1;
     private static final int TYPE_LOADING = 2;
-
 
 
     public PlayersAdapter () {
