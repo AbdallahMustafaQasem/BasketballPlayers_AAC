@@ -2,7 +2,7 @@ package abdallah.qasem.basketballplayers.repositories;
 
 
 
-import android.util.Log;
+
 
 
 import abdallah.qasem.basketballplayers.models.PlayersData;
@@ -13,7 +13,7 @@ import retrofit2.Response;
 public class PlayersRepositories {
     private static final String TAG = PlayersRepositories.class.getName();
 
-    private static PlayersRepositories instance;
+
     private PlayersApi newsApi;
 
     OperationCallBack operationCallBack;

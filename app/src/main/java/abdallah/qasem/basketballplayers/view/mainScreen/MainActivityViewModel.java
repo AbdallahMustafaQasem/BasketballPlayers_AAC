@@ -1,12 +1,18 @@
-package abdallah.qasem.basketballplayers.viewModels;
+package abdallah.qasem.basketballplayers.view.mainScreen;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import abdallah.qasem.basketballplayers.models.PlayersData;
 import abdallah.qasem.basketballplayers.repositories.OperationCallBack;
 import abdallah.qasem.basketballplayers.repositories.PlayersRepositories;
+import abdallah.qasem.basketballplayers.view.viewPager.PagerActivity;
 
 public class MainActivityViewModel extends AndroidViewModel implements OperationCallBack {
 
@@ -62,6 +68,18 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
 
 
     }
+
+
+
+    public void onClick(View view) {
+
+        Log.e( "  VM  " , "   onClick   ") ;
+        Context context = view.getContext();
+        Intent intent = new Intent(context, PagerActivity.class);
+        context.startActivity(intent);
+    }
+
+
 
 
 }

@@ -10,6 +10,12 @@
             name="datum"
             type="abdallah.qasem.basketballplayers.models.Datum" />
 
+
+        <variable
+            name="viewModel"
+            type="abdallah.qasem.basketballplayers.view.mainScreen.MainActivityViewModel" />
+
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -60,6 +66,7 @@
                 android:layout_marginTop="8dp"
                 android:imageUrl="@{datum.id}"
                 android:layout_marginEnd="8dp"
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

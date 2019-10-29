@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +13,6 @@ import com.squareup.picasso.Picasso;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.helpers.ColorsHelper;
-import abdallah.qasem.basketballplayers.view.adapters.PlayersAdapter;
 
 public class Datum {
 
@@ -131,7 +129,6 @@ public class Datum {
         view.setBackgroundColor(ContextCompat.getColor(view.getContext(), ColorsHelper.getInstance().getColor(position)));
 
     }
-
 
 
 

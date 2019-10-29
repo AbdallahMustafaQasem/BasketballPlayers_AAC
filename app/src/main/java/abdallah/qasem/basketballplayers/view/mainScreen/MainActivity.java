@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityMainBinding;
-import abdallah.qasem.basketballplayers.view.adapters.PlayersAdapter;
-import abdallah.qasem.basketballplayers.viewModels.MainActivityViewModel;
 
 
 public class MainActivity extends AppCompatActivity {

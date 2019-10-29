@@ -11,14 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.PlyaersFragmentBinding;
-import abdallah.qasem.basketballplayers.view.adapters.PlayersAdapter;
+import abdallah.qasem.basketballplayers.view.mainScreen.PlayersAdapter;
 
 public class PlayersFragment extends Fragment {
 

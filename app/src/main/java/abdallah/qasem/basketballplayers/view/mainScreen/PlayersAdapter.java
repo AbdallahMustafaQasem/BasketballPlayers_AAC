@@ -1,10 +1,12 @@
-package abdallah.qasem.basketballplayers.view.adapters;
+package abdallah.qasem.basketballplayers.view.mainScreen;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,9 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_LIST_ITEM = 1;
     private static final int TYPE_LOADING = 2;
 
-    public PlayersAdapter() {
+
+
+    public PlayersAdapter () {
         this.itemList = new ArrayList<>();
 
 
@@ -69,6 +73,11 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 RowPlayersBinding binding =
                         DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
                                 , R.layout.row_players, parent, false);
+
+
+
+
+
                 return new PlayerViewHolder(binding);
             case TYPE_LOADING:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_loading_item, parent, false);
