@@ -4,4 +4,6 @@
     <string name="player_name">Player Name :</string>
     <string name="hello">Hello</string>
     <string name="open_view_pager">Open View Pager</string>
+    <string name="startservice">Startservice</string>
+    <string name="stop_service">stop service</string>
 </resources>

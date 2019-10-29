@@ -14,16 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.viewPager.PagerActivity">
-
-        </activity>
-        <activity android:name=".view.mainScreen.MainActivity">
+        <activity android:name=".view.Services.ServiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity android:name=".view.viewPager.PagerActivity"></activity>
+        <activity android:name=".view.mainScreen.MainActivity">
+
+        </activity>
+
+
+        <service android:name="abdallah.qasem.basketballplayers.view.Services.ServicesCounter"></service>
+
     </application>
 
 </manifest>
