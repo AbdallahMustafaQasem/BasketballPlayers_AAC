@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorGreen"
         android:layout_height="match_parent"
-        tools:context=".view.viewPager.fragments.PlayersFragmentOne">
+        tools:context=".view.viewPager.fragments.PlayersFragment">
 
 
         <RelativeLayout

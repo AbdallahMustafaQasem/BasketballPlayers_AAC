@@ -4,7 +4,6 @@ package abdallah.qasem.basketballplayers.repositories;
 
 import android.util.Log;
 
-import androidx.lifecycle.AndroidViewModel;
 
 import abdallah.qasem.basketballplayers.models.PlayersData;
 import retrofit2.Call;
@@ -19,22 +18,13 @@ public class PlayersRepositories {
 
     OperationCallBack operationCallBack;
 
-    public static PlayersRepositories getInstance() {
-        if (instance == null) {
-            instance = new PlayersRepositories();
-        }
-        return instance;
-    }
 
-    private PlayersRepositories() {
+    public PlayersRepositories() {
         newsApi = RetrofitService.cteateService(PlayersApi.class);
     }
 
 
     public void getPlayersData(final int page, String per_page, OperationCallBack callBack) {
-
-
-        Log.e( "  getPlayersData " , " getPlayersData  ")  ;
 
         this.operationCallBack = callBack;
         if (operationCallBack!=null)

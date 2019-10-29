@@ -100,6 +100,11 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return itemList.size();
     }
 
+    public void clearAdapterList() {
+        itemList.clear();
+        notifyDataSetChanged();
+    }
+
 
     public class PlayerViewHolder extends RecyclerView.ViewHolder {
 

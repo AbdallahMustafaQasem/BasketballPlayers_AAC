@@ -19,6 +19,11 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
     // flag to avoid multiple request at the same time
     private MutableLiveData<Boolean> canLoadingData = new MutableLiveData<>();
 
+
+
+    PlayersRepositories repositories = new PlayersRepositories();
+
+
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
         // set default value
@@ -31,7 +36,7 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
     public void getPage(int page, String per_page) {
 
         if (canLoadingData.getValue())
-            PlayersRepositories.getInstance().getPlayersData(page, per_page, this);
+            repositories.getPlayersData(page, per_page, this);
     }
 
 

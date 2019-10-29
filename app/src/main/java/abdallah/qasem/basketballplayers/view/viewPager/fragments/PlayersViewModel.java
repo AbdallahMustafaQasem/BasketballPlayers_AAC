@@ -16,58 +16,45 @@ public class PlayersViewModel extends AndroidViewModel implements  OperationCall
 
 
 
-    // fragment one --------------------------------------------------------------
 
     // response from API
-    public MutableLiveData<PlayersData> mPlayersData_one = new MutableLiveData<>();
+    public MutableLiveData<PlayersData> mPlayersData = new MutableLiveData<>();
 
     // show and hide progressBar in first page
-    public MutableLiveData<Boolean> loadingIndicator_one = new MutableLiveData<>();
+    public MutableLiveData<Boolean> loadingIndicator = new MutableLiveData<>();
 
     // flag to avoid multiple request at the same time
-    private MutableLiveData<Boolean> canLoadingData_one = new MutableLiveData<>();
-
-    //------------------------------------------------------------------------------
+    private MutableLiveData<Boolean> canLoadingData = new MutableLiveData<>();
 
 
-    // fragment two  --------------------------------------------------------------
+    PlayersRepositories repositories = new PlayersRepositories();
 
-    // response from API
-    public MutableLiveData<PlayersData> mPlayersData_two = new MutableLiveData<>();
 
-    // show and hide progressBar in first page
-    public MutableLiveData<Boolean> loadingIndicator_two = new MutableLiveData<>();
-
-    // flag to avoid multiple request at the same time
-    private MutableLiveData<Boolean> canLoadingData_two = new MutableLiveData<>();
-
-    //------------------------------------------------------------------------------
 
     public PlayersViewModel(@NonNull Application application) {
         super(application);
         // set default value
-        loadingIndicator_one.setValue(false);
-        canLoadingData_one.setValue(true);
-        loadingIndicator_two.setValue(false);
-        canLoadingData_two.setValue(true);
+        loadingIndicator.setValue(false);
+        canLoadingData.setValue(true);
+
 
     }
 
 
     public void getPage(int page, String per_page) {
 
-        if (canLoadingData_one.getValue())
-            PlayersRepositories.getInstance().getPlayersData(page, per_page, this);
+        if (canLoadingData.getValue())
+            repositories.getPlayersData(page, per_page, this);
     }
 
 
     @Override
     public void startLoading(int page) {
         if (page == 1)
-            loadingIndicator_one.setValue(true);
+            loadingIndicator.setValue(true);
         else
-            loadingIndicator_one.setValue(false);
-        canLoadingData_one.setValue(false);
+            loadingIndicator.setValue(false);
+        canLoadingData.setValue(false);
 
     }
 
@@ -75,10 +62,10 @@ public class PlayersViewModel extends AndroidViewModel implements  OperationCall
     public void onSuccess(Object result, int page) {
 
         Log.e( "  onSuccess " , "  page    = " +page  + "  res ");
-        mPlayersData_one.setValue((PlayersData) result);
+        mPlayersData.setValue((PlayersData) result);
 
-        canLoadingData_one.setValue(true);
-        loadingIndicator_two.setValue(false);
+        canLoadingData.setValue(true);
+        loadingIndicator.setValue(false);
     }
 
     @Override
