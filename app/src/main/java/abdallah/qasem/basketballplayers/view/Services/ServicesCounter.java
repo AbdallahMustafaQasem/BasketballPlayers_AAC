@@ -11,9 +11,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 import static java.lang.Thread.sleep;
 
 
@@ -24,36 +21,27 @@ public class ServicesCounter extends Service {
     public static volatile boolean shouldStop = false;
     public static volatile Status status = Status.stop;
 
-
-    private final Lock lock = new ReentrantLock();
-   // private Handler handlerCounter;
+    // private Handler handlerCounter;
 
     private int currentPosition = 0;
 
-    
     @Override
     public void onCreate() {
         super.onCreate();
         Log.e(TAG, "onCreate ");
-
-
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Log.e(TAG, "onStartCommand ");
         shouldStop = false;
         shouldContinue = true;
         status = Status.play;
-
-
         Thread myThread = new Thread(new Runnable() {
             public void run() {
 
 
                 while (!shouldStop) {
-
 
                     if (shouldStop) {
                         status = Status.stop;
@@ -66,26 +54,20 @@ public class ServicesCounter extends Service {
                         status = Status.play;
                         currentPosition++;
 
-
-                        lock.lock();
                         try {
 
-
-                           sleep(250);
+                            sleep(250);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } finally {
-                            lock.unlock();
+                            sendMessageToActivity(currentPosition);
                         }
-
-                        sendMessageToActivity(currentPosition);
 
                     } else {
                         status = Status.pause;
 
                     }
                 }
-
 
                 status = Status.stop;
                 stopSelf();
@@ -147,9 +129,6 @@ public class ServicesCounter extends Service {
         pause,
         stop
     }
-
-
-
 
 
 }
