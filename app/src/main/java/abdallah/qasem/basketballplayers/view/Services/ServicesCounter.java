@@ -26,15 +26,11 @@ public class ServicesCounter extends Service {
 
 
     private final Lock lock = new ReentrantLock();
-    private Handler handlerCounter;
+   // private Handler handlerCounter;
 
     private int currentPosition = 0;
 
-
-
-    private boolean empty = true;  private String message = " test app  message";
-
-
+    
     @Override
     public void onCreate() {
         super.onCreate();

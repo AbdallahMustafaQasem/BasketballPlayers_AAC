@@ -45,6 +45,7 @@ public class ServiceBlockThread extends Service {
                         if (!running) {
                             // may have changed while waiting to
                             // synchronize on pauseLock
+
                             break;
                         }
                         if (paused) {
@@ -64,7 +65,7 @@ public class ServiceBlockThread extends Service {
                     }
                     status = Status.play;
                     try {
-                        sleep(250);
+                        sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
