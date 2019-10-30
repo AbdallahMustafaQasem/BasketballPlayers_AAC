@@ -32,6 +32,9 @@ public class ServicesCounter extends Service {
 
 
 
+    private boolean empty = true;  private String message = " test app  message";
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,6 +58,7 @@ public class ServicesCounter extends Service {
 
                 while (!shouldStop) {
 
+
                     if (shouldStop) {
                         status = Status.stop;
                         stopSelf();
@@ -69,7 +73,9 @@ public class ServicesCounter extends Service {
 
                         lock.lock();
                         try {
-                            sleep(250);
+
+
+                           sleep(250);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } finally {
@@ -100,11 +106,11 @@ public class ServicesCounter extends Service {
             @Override
             public void run() {
                 if (shouldStop) {
-                    status = Status.stop;
+                    status = Status.running;
                     stopSelf();
                     return;
                 }
-                if (shouldContinue) {
+                if (paused) {
                     status = Status.play;
                     currentPosition++;
                     sendMessageToActivity(currentPosition);
@@ -112,7 +118,7 @@ public class ServicesCounter extends Service {
                         handlerCounter.postDelayed(this, 300);
                     }
                 } else {
-                    status = Status.pause;
+                    status = Status.paused;
                     handlerCounter.postDelayed(this, 300);
                 }
             }
@@ -145,6 +151,9 @@ public class ServicesCounter extends Service {
         pause,
         stop
     }
+
+
+
 
 
 }

@@ -22,12 +22,16 @@ public class ServiceActivity extends AppCompatActivity {
     private ActivityServiceBinding binding;
     private Intent serviceIntent;
 
+
+    //--------------------------------------
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service);
 
-        serviceIntent = new Intent(getApplicationContext(), ServicesCounter.class);
+        serviceIntent = new Intent(getApplicationContext(), ServiceBlockThread.class);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 mMessageReceiver, new IntentFilter(ServiceActivity.UpdatesCounter));
@@ -38,21 +42,21 @@ public class ServiceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                switch(ServicesCounter.status) {
+                switch(ServiceBlockThread.status) {
 
                     case play:
-                        Log.e(TAG, "  play ");
-                        ServicesCounter.shouldContinue = false;
+                        Log.e(TAG, "  play  "  );
                         binding.buStartService.setText(R.string.resume);
+                        ServiceBlockThread.pause();
                         break;
                     case pause:
-                        Log.e(TAG, "  pause ");
-                        ServicesCounter.shouldContinue = true;
+                        Log.e(TAG, "  paused ");
+                        ServiceBlockThread.resume();
                         binding.buStartService.setText(R.string.pause);
 
                         break;
                     case stop:
-                        Log.e(TAG, "  stop ");
+                        Log.e(TAG, "  running ");
                         startService(serviceIntent);
                         binding.buStartService.setText(R.string.pause);
                         break;
@@ -65,11 +69,17 @@ public class ServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ServicesCounter.shouldStop = true;
+                ServiceBlockThread.stop();
                 binding.buStartService.setText(R.string.startservice);
             }
         });
-    }
+
+
+
+        }
+
+
+
 
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
