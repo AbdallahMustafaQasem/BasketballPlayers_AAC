@@ -24,7 +24,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="@string/startservice"/>
-
+            <Button
+                android:id="@+id/bu_stop_service"
+                android:layout_below="@+id/bu_start_service"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/stop_service" />
 
 
             <TextView

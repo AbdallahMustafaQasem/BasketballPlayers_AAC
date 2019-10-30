@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +12,10 @@ import android.content.IntentFilter;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
+
+
 
 import abdallah.qasem.basketballplayers.R;
 
@@ -40,11 +44,20 @@ public class ServiceActivity extends AppCompatActivity {
         binding.buStartService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.e(" Activity "  , "   startService   ");
                 startService(serviceIntent);
 
             }
         });
+ binding.buStopService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
 
+
+            }
+        });
 
 
     }

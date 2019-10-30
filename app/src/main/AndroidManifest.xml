@@ -28,7 +28,11 @@
         </activity>
 
 
-        <service android:name="abdallah.qasem.basketballplayers.view.Services.ServicesCounter"></service>
+        <service
+            android:name="abdallah.qasem.basketballplayers.view.Services.ServicesCounter"
+            android:process=":service">
+
+        </service>
 
     </application>
 

@@ -4,10 +4,8 @@ import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 
-import android.os.Handler;
 import android.os.IBinder;
-
-
+import android.util.Log;
 
 
 import androidx.annotation.Nullable;
@@ -17,9 +15,11 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 public class ServicesCounter extends IntentService {
 
 
-    int t = 0;
-    Handler handlerCounter;
+    public static volatile boolean shouldContinue = true;
 
+
+    private Thread mythread;
+    private boolean running;
     private static final String TAG = ServicesCounter.class.getSimpleName();
 
 
@@ -30,7 +30,18 @@ public class ServicesCounter extends IntentService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        Log.e ( TAG," onStartCommand  ");
+        mythread = new Thread(new Runnable() {
+            public void run(){
 
+                for (int i = 0; i < 10; i++) {
+                    sendMessageToActivity(i);
+                }
+            }
+        });
+
+        mythread.start();
+/*
         handlerCounter = new Handler();
         handlerCounter.postDelayed(new Runnable() {
             @Override
@@ -41,7 +52,7 @@ public class ServicesCounter extends IntentService {
                     handlerCounter.postDelayed(this, 300);
                 }
             }
-        }, 1000);
+        }, 1000);*/
         return Service.START_NOT_STICKY;
     }
 
@@ -56,7 +67,7 @@ public class ServicesCounter extends IntentService {
     @Override
     public IBinder onBind(Intent intent) {
 
-
+        Log.e ( TAG,"  onBind ");
 
 
         return null;
@@ -66,9 +77,13 @@ public class ServicesCounter extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
-
-
+        Log.e ( TAG," onHandleIntent  ");
     }
+
+
+
+
+
 
 
     }
