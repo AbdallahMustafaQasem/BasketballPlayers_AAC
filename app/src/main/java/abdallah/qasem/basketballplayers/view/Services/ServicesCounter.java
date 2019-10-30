@@ -25,15 +25,12 @@ public class ServicesCounter extends Service {
     public static volatile Status status = Status.stop;
 
 
-    private Thread mythread;
     private final Lock lock = new ReentrantLock();
     private Handler handlerCounter;
 
     private int currentPosition = 0;
 
-    /*public ServicesCounter() {
-        super(ServicesCounter.class.getName());
-    }*/
+
 
     @Override
     public void onCreate() {
@@ -52,9 +49,7 @@ public class ServicesCounter extends Service {
         status = Status.play;
 
 
-
-
-        mythread = new Thread(new Runnable() {
+        Thread myThread = new Thread(new Runnable() {
             public void run() {
 
 
@@ -73,14 +68,11 @@ public class ServicesCounter extends Service {
 
 
                         lock.lock();
-                        try
-                        {
-                             sleep(250);
-                        } catch (InterruptedException e)
-                        {
+                        try {
+                            sleep(250);
+                        } catch (InterruptedException e) {
                             e.printStackTrace();
-                        } finally
-                        {
+                        } finally {
                             lock.unlock();
                         }
 
@@ -99,7 +91,7 @@ public class ServicesCounter extends Service {
             }
         });
 
-        mythread.start();
+        myThread.start();
 
 /*
 

@@ -11,5 +11,6 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="stop_service">Stop service</string>
+    <string name="open_counter">Counter</string>
 
 </resources>

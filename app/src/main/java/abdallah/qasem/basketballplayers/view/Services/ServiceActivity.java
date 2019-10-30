@@ -1,5 +1,4 @@
 package abdallah.qasem.basketballplayers.view.Services;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;

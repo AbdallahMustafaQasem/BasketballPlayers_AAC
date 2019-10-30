@@ -26,24 +26,45 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/open_pager"
+            android:layout_above="@+id/lin"
             android:data="@{viewModel.mPlayersData}"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
 
             />
 
-        <Button
-            android:id="@+id/open_pager"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:onClick="@{(v) -> viewModel.onClick(v)}"
-            android:text="@string/open_view_pager"
+            android:layout_height="wrap_content">
 
-            />
+            <Button
+                android:id="@+id/open_pager"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:text="@string/open_view_pager"
+
+                />
+
+
+            <Button
+                android:id="@+id/open_service"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+
+                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:text="@string/open_counter"
+
+                />
+
+        </LinearLayout>
+
 
         <ProgressBar
             android:id="@+id/progressBar"

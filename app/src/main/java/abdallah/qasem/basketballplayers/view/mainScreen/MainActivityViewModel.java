@@ -4,12 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+
+import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.models.PlayersData;
 import abdallah.qasem.basketballplayers.repositories.OperationCallBack;
 import abdallah.qasem.basketballplayers.repositories.PlayersRepositories;
+import abdallah.qasem.basketballplayers.view.Services.ServiceActivity;
 import abdallah.qasem.basketballplayers.view.viewPager.PagerActivity;
 
 public class MainActivityViewModel extends AndroidViewModel implements OperationCallBack {
@@ -22,7 +26,6 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
 
     // flag to avoid multiple request at the same time
     private MutableLiveData<Boolean> canLoadingData = new MutableLiveData<>();
-
 
 
     PlayersRepositories repositories = new PlayersRepositories();
@@ -66,12 +69,21 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
     }
 
     public void onClick(View view) {
+
         Context context = view.getContext();
-        Intent intent = new Intent(context, PagerActivity.class);
-        context.startActivity(intent);
+        switch (view.getId()) {
+            case R.id.open_pager:
+                Intent PagerActivityIntent = new Intent(context, PagerActivity.class);
+                context.startActivity(PagerActivityIntent);
+                break;
+            case R.id.open_service:
+
+                Intent ServiceActivityIntent = new Intent(context, ServiceActivity.class);
+                context.startActivity(ServiceActivityIntent);
+                break;
+        }
+
     }
-
-
 
 
 }
