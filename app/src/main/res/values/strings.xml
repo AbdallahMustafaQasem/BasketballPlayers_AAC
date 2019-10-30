@@ -1,9 +1,15 @@
 <resources>
+
     <string name="app_name">BasketballPlayers</string>
     <string name="team">Team :</string>
     <string name="player_name">Player Name :</string>
     <string name="hello">Hello</string>
     <string name="open_view_pager">Open View Pager</string>
-    <string name="startservice">Startservice</string>
-    <string name="stop_service">stop service</string>
+    <string name="startservice">Start service</string>
+    <string name="restartservice">Restart service</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="stop_service">Stop service</string>
+
 </resources>

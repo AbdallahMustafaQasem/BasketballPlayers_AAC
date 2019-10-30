@@ -1,54 +1,140 @@
 package abdallah.qasem.basketballplayers.view.Services;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 
 import android.os.Handler;
 import android.os.IBinder;
-
-
+import android.util.Log;
 
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class ServicesCounter extends IntentService {
+import static java.lang.Thread.sleep;
 
 
-    int t = 0;
-    Handler handlerCounter;
-
+public class ServicesCounter extends Service {
     private static final String TAG = ServicesCounter.class.getSimpleName();
 
+    public static volatile boolean shouldContinue = true;
+    public static volatile boolean shouldStop = false;
+    public static volatile Status status = Status.stop;
 
-    public ServicesCounter() {
+
+    private Thread mythread;
+    private final Lock lock = new ReentrantLock();
+    private Handler handlerCounter;
+
+    private int currentPosition = 0;
+
+    /*public ServicesCounter() {
         super(ServicesCounter.class.getName());
+    }*/
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.e(TAG, "onCreate ");
+
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        Log.e(TAG, "onStartCommand ");
+        shouldStop = false;
+        shouldContinue = true;
+        status = Status.play;
+
+
+
+
+        mythread = new Thread(new Runnable() {
+            public void run() {
+
+
+                while (!shouldStop) {
+
+                    if (shouldStop) {
+                        status = Status.stop;
+                        stopSelf();
+                        return;
+                    }
+
+
+                    if (shouldContinue) {
+                        status = Status.play;
+                        currentPosition++;
+
+
+                        lock.lock();
+                        try
+                        {
+                             sleep(250);
+                        } catch (InterruptedException e)
+                        {
+                            e.printStackTrace();
+                        } finally
+                        {
+                            lock.unlock();
+                        }
+
+                        sendMessageToActivity(currentPosition);
+
+                    } else {
+                        status = Status.pause;
+
+                    }
+                }
+
+
+                status = Status.stop;
+                stopSelf();
+
+            }
+        });
+
+        mythread.start();
+
+/*
 
         handlerCounter = new Handler();
         handlerCounter.postDelayed(new Runnable() {
             @Override
             public void run() {
-                t++;
-                sendMessageToActivity(t);
-                if(t<1000) {
+                if (shouldStop) {
+                    status = Status.stop;
+                    stopSelf();
+                    return;
+                }
+                if (shouldContinue) {
+                    status = Status.play;
+                    currentPosition++;
+                    sendMessageToActivity(currentPosition);
+                    if (currentPosition < 1000) {
+                        handlerCounter.postDelayed(this, 300);
+                    }
+                } else {
+                    status = Status.pause;
                     handlerCounter.postDelayed(this, 300);
                 }
             }
         }, 1000);
+
+*/
+
         return Service.START_NOT_STICKY;
     }
 
     private void sendMessageToActivity(int t) {
 
         Intent intent = new Intent(ServiceActivity.UpdatesCounter);
-        intent.putExtra(ServiceActivity.number, ""+t);
+        intent.putExtra(ServiceActivity.number, "" + t);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
     }
 
@@ -57,19 +143,17 @@ public class ServicesCounter extends IntentService {
     public IBinder onBind(Intent intent) {
 
 
-
-
         return null;
 
     }
 
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
 
-
-
+    enum Status {
+        play,
+        pause,
+        stop
     }
 
 
-    }
+}
 
