@@ -101,8 +101,9 @@ public class CounterActivity extends AppCompatActivity {
 
 
     public void stop() {
-        resume();
+        pause();
         running = false;
+        status = Status.stop;
 
     }
 
@@ -158,7 +159,7 @@ public class CounterActivity extends AppCompatActivity {
 
                     status = Status.play;
                     try {
-                        sleep(100);
+                        sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
@@ -170,7 +171,7 @@ public class CounterActivity extends AppCompatActivity {
                 }
 
                 lock.unlock();
-                status = Status.stop;
+
                 myThread.interrupt();
                 return;
 
