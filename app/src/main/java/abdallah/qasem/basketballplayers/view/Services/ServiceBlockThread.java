@@ -8,6 +8,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.util.concurrent.locks.Lock;
+
 import static java.lang.Thread.sleep;
 
 
@@ -40,8 +42,9 @@ public class ServiceBlockThread extends Service {
         Thread myThread = new Thread(new Runnable() {
             public void run() {
 
+
                 while (running) {
-                    synchronized (pauseLock) {
+
                         if (!running) {
                             // may have changed while waiting to
                             // synchronize on pauseLock
@@ -62,7 +65,7 @@ public class ServiceBlockThread extends Service {
                                 break;
                             }
                         }
-                    }
+
                     status = Status.play;
                     try {
                         sleep(100);
