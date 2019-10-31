@@ -1,14 +1,14 @@
 package abdallah.qasem.basketballplayers.view.Services;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import java.util.concurrent.locks.Lock;
 
 import static java.lang.Thread.sleep;
 
@@ -17,6 +17,11 @@ public class ServiceBlockThread extends Service {
     private static final String TAG = ServiceBlockThread.class.getSimpleName();
 
     public static volatile Status status = Status.stop;
+
+
+
+    public final static String UpdatesCounter = "UpdatesCounter";
+    public final static String number = "Unumber";
 
     public static volatile boolean paused = true;
     public static volatile boolean running = false;
@@ -42,7 +47,6 @@ public class ServiceBlockThread extends Service {
         Thread myThread = new Thread(new Runnable() {
             public void run() {
 
-
                 while (running) {
 
                         if (!running) {
@@ -55,6 +59,7 @@ public class ServiceBlockThread extends Service {
                             status = Status.pause;
                             try {
                                 synchronized (pauseLock) {
+
                                     pauseLock.wait();
                                 }
                             } catch (InterruptedException ex) {
@@ -131,6 +136,7 @@ public class ServiceBlockThread extends Service {
         pause,
         stop
     }
+
 
 
 }
