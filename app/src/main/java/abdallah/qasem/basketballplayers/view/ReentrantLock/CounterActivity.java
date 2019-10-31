@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.view.test;
+package abdallah.qasem.basketballplayers.view.ReentrantLock;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

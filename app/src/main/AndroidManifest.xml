@@ -14,23 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.test.CounterActivity">
+        <activity android:name=".view.TwoWayBinding.TwoWayBindingAcivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.ReentrantLock.CounterActivity">
 
         </activity>
-        <activity android:name=".view.Services.ServiceActivity"></activity>
-        <activity android:name=".view.viewPager.PagerActivity"></activity>
-        <activity android:name=".view.mainScreen.MainActivity">
-
-
-
-
-        </activity>
+        <activity android:name=".view.Services.ServiceActivity" />
+        <activity android:name=".view.viewPager.PagerActivity" />
+        <activity android:name=".view.mainScreen.MainActivity"></activity>
 
         <service android:name=".view.Services.ServicesCounter" />
         <service android:name=".view.Services.ServiceBlockThread" />
