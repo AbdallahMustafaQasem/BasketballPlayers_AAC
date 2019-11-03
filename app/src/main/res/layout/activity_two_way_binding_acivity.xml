@@ -27,7 +27,7 @@
                 android:id="@+id/tv_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="@{item.name}"
+                android:text="@{ item.name.toString()}"
                 android:layout_alignParentEnd="true"
                 android:background="#FFFFFF" />
 

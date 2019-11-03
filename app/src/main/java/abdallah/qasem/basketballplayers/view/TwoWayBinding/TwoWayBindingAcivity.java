@@ -12,22 +12,17 @@ import abdallah.qasem.basketballplayers.models.Item;
 public class TwoWayBindingAcivity extends AppCompatActivity {
 
 
+    ActivityTwoWayBindingAcivityBinding binding;
 
-ActivityTwoWayBindingAcivityBinding binding ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_two_way_binding_acivity);
 
-
-        Item item = new Item("  abdallah qasem "   , " abdullah.q");
-
-
-binding.setItem(item);
-        /*
+        Item item = new Item("  abdallah qasem ", " abdullah.q");
 
 
+        binding.setItem(item);
 
-        * */
     }
 }
