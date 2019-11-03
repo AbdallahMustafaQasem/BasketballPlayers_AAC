@@ -20,10 +20,10 @@ public class PC_Activity extends AppCompatActivity {
 
     private static int currentSize;
 
-    static ArrayList<String> MainList = new ArrayList<String>(1000);
+    static ArrayList<String> MainList = new ArrayList<String>();
 
 
-    static ArrayList<String> NewList = new ArrayList<String>(1000);
+    static ArrayList<String> NewList = new ArrayList<String>();
 
 
     @Override
@@ -77,19 +77,19 @@ public class PC_Activity extends AppCompatActivity {
         void produce() {
             synchronized (key) {
 
-                Log.e(TAG, " enter Producer ");
-                Log.e(TAG, " currentSize =  " + currentSize + " MainList.size()=" + MainList.size());
-                if (currentSize == MainList.size()) {
+
+            //    Log.e(TAG, " currentSize =  " + currentSize + " MainList.size()=" + MainList.size());
+                if (currentSize == 1000) {
                     try {
                         key.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                Log.e(TAG, " enter Producer 1");
+
                 String text = " number " + currentSize;
                 MainList.add(text);
-                Log.e(TAG, "produce " + text + "true");
+                Log.e(TAG, "produce " + text );
                 key.notifyAll();
             }
         }
@@ -108,9 +108,10 @@ public class PC_Activity extends AppCompatActivity {
                     }
                 }
                 --currentSize;
-                NewList.add(MainList.get(currentSize));
+                String item  = MainList.get(currentSize);
+                NewList.add(item);
                 MainList.remove(currentSize);
-                Log.e(TAG, "consume  " + currentSize + "false");
+                Log.e(TAG, "consume  " + currentSize );
                 key.notifyAll();
             }
         }
