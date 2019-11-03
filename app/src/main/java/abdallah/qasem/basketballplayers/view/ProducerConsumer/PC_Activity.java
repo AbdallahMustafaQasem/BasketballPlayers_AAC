@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.view.ReentrantLock.CounterActivity;
@@ -15,13 +18,10 @@ import static java.lang.Thread.sleep;
 
 public class PC_Activity extends AppCompatActivity {
 
-    private static final String TAG = CounterActivity.class.getSimpleName();
+    private static final String TAG = "PC_Activity";
 
-    static Object key = new Object();
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    private static int currentSize;
-
-    
 
     private static int producerPortion;
 
@@ -29,8 +29,10 @@ public class PC_Activity extends AppCompatActivity {
     static ArrayList<String> MainList = new ArrayList<String>();
     static ArrayList<String> NewList = new ArrayList<String>();
 
-    ReentrantLock lock = new ReentrantLock();
 
+
+    Thread prodThread ;
+    Thread consThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +40,30 @@ public class PC_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_pc_);
 
 
-        currentSize = 0;
-
-
-        final Producer producer = new Producer();
-        final Consumer consumer = new Consumer();
-
-
-        Runnable prodRunn = new Runnable() {
+        final Runnable prodRunn = new Runnable() {
             @Override
             public void run() {
+                Log.e(TAG, "Produced...");
 
                 try {
                     sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.e(TAG, "Produced...");
+
                 for (int x = 0; x < 1000; x++) {
-                    producer.produce();
+                    String text = " number " + producerPortion;
+                    lock.writeLock().lock();
+                    MainList.add(text);
+                    Log.e(TAG, "producer  " + text);
+                    lock.writeLock().unlock();
+                    producerPortion++;
+
+
+
                 }
+
+
 
 
 
@@ -67,17 +73,26 @@ public class PC_Activity extends AppCompatActivity {
         Runnable consRunn = new Runnable() {
             @Override
             public void run() {
-                Log.e(TAG, "Consumer...");
-                for (int x = 0; x < 1000; x++) {
-                    consumer.consume();
+                Log.e(TAG, "Consumer..."+ MainList.size());
+
+
+                while (MainList.size() > 0) {
+                    lock.readLock().lock();
+                    String item = MainList.get(0);
+                    MainList.remove(0);
+                    Log.e(TAG, "consume  " + item);
+                    lock.readLock().unlock();
+                    NewList.add(item);
                 }
 
-                Log.e(TAG, "  NewList list size = " + NewList.size());
+
+
             }
         };
 
-        Thread prodThread = new Thread(prodRunn);
-        Thread consThread = new Thread(consRunn);
+
+        prodThread = new Thread(prodRunn);
+        consThread = new Thread(consRunn);
         prodThread.start();
         consThread.start();
 
@@ -85,53 +100,4 @@ public class PC_Activity extends AppCompatActivity {
     }
 
 
-    static class Producer {
-        void produce() {
-            synchronized (key) {
-
-
-                //    Log.e(TAG, " currentSize =  " + currentSize + " MainList.size()=" + MainList.size());
-                if (currentSize == 1000) {
-                    try {
-                        key.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                String text = " number " + producerPortion;
-                MainList.add(text);
-                Log.e(TAG, "produce " + text);
-                currentSize++;
-                producerPortion++;
-                key.notifyAll();
-            }
-        }
-    }
-
-    static class Consumer {
-        void consume() {
-            synchronized (key) {
-
-
-                if (currentSize == 0) {
-                    try {
-                        key.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                --currentSize;
-
-
-                if (MainList.get(0) != null) {
-                    String item = MainList.get(0);
-                    NewList.add(item);
-                    MainList.remove(0);
-                    Log.e(TAG, "consume  " + item);
-                }
-                key.notifyAll();
-            }
-        }
-    }
 }
