@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -29,10 +30,14 @@ public class PC_Activity extends AppCompatActivity {
     static ArrayList<String> MainList = new ArrayList<String>();
     static ArrayList<String> NewList = new ArrayList<String>();
 
+    Random random = new Random();
 
+    public static boolean haveMore = true;
 
-    Thread prodThread ;
+    Thread prodThread;
     Thread consThread;
+    private int max = 1000;
+    private int min= 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +64,14 @@ public class PC_Activity extends AppCompatActivity {
                     lock.writeLock().unlock();
                     producerPortion++;
 
+                    try {
+                        sleep(random.nextInt(max - min + 1) + min);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
-
-
-
 
 
             }
@@ -73,18 +80,25 @@ public class PC_Activity extends AppCompatActivity {
         Runnable consRunn = new Runnable() {
             @Override
             public void run() {
-                Log.e(TAG, "Consumer..."+ MainList.size());
+                Log.e(TAG, "Consumer...");
 
 
-                while (MainList.size() > 0) {
-                    lock.readLock().lock();
-                    String item = MainList.get(0);
-                    MainList.remove(0);
-                    Log.e(TAG, "consume  " + item);
-                    lock.readLock().unlock();
-                    NewList.add(item);
+                while (MainList.size() > 0 || haveMore) {
+                    try {
+                        sleep(random.nextInt(max - min + 1) + min);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (MainList.size() > 0) {
+                        lock.readLock().lock();
+                        String item = MainList.get(0);
+                        MainList.remove(0);
+                        Log.e(TAG, "consume  " + item);
+                        lock.readLock().unlock();
+                        NewList.add(item);
+                    }
                 }
-
 
 
             }
@@ -95,6 +109,11 @@ public class PC_Activity extends AppCompatActivity {
         consThread = new Thread(consRunn);
         prodThread.start();
         consThread.start();
+     /*   try {
+            consThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
 
 
     }
