@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
     <data>
-
         <variable
-            name="contact"
-            type="abdallah.qasem.basketballplayers.view.TwoWayBinding.Contact" />
-
+            name="item"
+            type="abdallah.qasem.basketballplayers.models.Item" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
                 android:id="@+id/tv_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="@{contact.name}"
+                android:text="@{item.name}"
                 android:layout_alignParentEnd="true"
                 android:background="#FFFFFF" />
 
@@ -36,6 +36,7 @@
                 android:id="@+id/ed_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="@={item.name}"
                 android:layout_below="@+id/tv_text"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="50dp"

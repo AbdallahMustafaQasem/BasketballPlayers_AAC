@@ -1,16 +1,17 @@
-package abdallah.qasem.basketballplayers.view.TwoWayBinding;
+package abdallah.qasem.basketballplayers.models;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
-public class Contact extends BaseObservable {
-
-
-    String Name;
-    String Email;
+public class Item extends BaseObservable  {
 
 
-    public Contact(String name, String email) {
+    private  String Name;
+    private  String Email;
+
+
+    public Item(String name, String email) {
         Name = name;
         Email = email;
     }
@@ -23,11 +24,13 @@ public class Contact extends BaseObservable {
 
     public void setName(String name) {
         Name = name;
+        notifyPropertyChanged(BR.name);
     }
 
     @Bindable
     public String getEmail() {
         return Email;
+
     }
 
     public void setEmail(String email) {

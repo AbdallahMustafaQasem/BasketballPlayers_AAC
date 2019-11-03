@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityTwoWayBindingAcivityBinding;
+import abdallah.qasem.basketballplayers.models.Item;
 
 public class TwoWayBindingAcivity extends AppCompatActivity {
 
@@ -19,7 +20,14 @@ ActivityTwoWayBindingAcivityBinding binding ;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_two_way_binding_acivity);
 
 
-        Contact contact = new Contact("  abdallah qasem "   , " abdullah.q");
-        binding.setContact(contact);
+        Item item = new Item("  abdallah qasem "   , " abdullah.q");
+
+
+binding.setItem(item);
+        /*
+
+
+
+        * */
     }
 }
