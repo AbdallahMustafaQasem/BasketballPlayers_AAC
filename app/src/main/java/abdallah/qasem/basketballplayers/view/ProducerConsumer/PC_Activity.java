@@ -20,9 +20,11 @@ public class PC_Activity extends AppCompatActivity {
 
     private static int currentSize;
 
+
+    private static int producerPortion;
+
+
     static ArrayList<String> MainList = new ArrayList<String>();
-
-
     static ArrayList<String> NewList = new ArrayList<String>();
 
 
@@ -42,13 +44,19 @@ public class PC_Activity extends AppCompatActivity {
         Runnable prodRunn = new Runnable() {
             @Override
             public void run() {
+
+                try {
+                    sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Log.e(TAG, "Produced...");
                 for (int x = 0; x < 1000; x++) {
                     producer.produce();
                 }
 
 
-                Log.e(TAG, "  Main list size = " + MainList.size());
+
             }
         };
 
@@ -78,7 +86,7 @@ public class PC_Activity extends AppCompatActivity {
             synchronized (key) {
 
 
-            //    Log.e(TAG, " currentSize =  " + currentSize + " MainList.size()=" + MainList.size());
+                //    Log.e(TAG, " currentSize =  " + currentSize + " MainList.size()=" + MainList.size());
                 if (currentSize == 1000) {
                     try {
                         key.wait();
@@ -87,9 +95,11 @@ public class PC_Activity extends AppCompatActivity {
                     }
                 }
 
-                String text = " number " + currentSize;
+                String text = " number " + producerPortion;
                 MainList.add(text);
-                Log.e(TAG, "produce " + text );
+                Log.e(TAG, "produce " + text);
+                currentSize++;
+                producerPortion++;
                 key.notifyAll();
             }
         }
@@ -108,10 +118,14 @@ public class PC_Activity extends AppCompatActivity {
                     }
                 }
                 --currentSize;
-                String item  = MainList.get(currentSize);
-                NewList.add(item);
-                MainList.remove(currentSize);
-                Log.e(TAG, "consume  " + currentSize );
+
+
+                if (MainList.get(0) != null) {
+                    String item = MainList.get(0);
+                    NewList.add(item);
+                    MainList.remove(0);
+                    Log.e(TAG, "consume  " + item);
+                }
                 key.notifyAll();
             }
         }
