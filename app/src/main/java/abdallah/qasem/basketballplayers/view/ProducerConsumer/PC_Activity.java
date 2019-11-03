@@ -6,75 +6,106 @@ import android.os.Bundle;
 import android.util.Log;
 
 import abdallah.qasem.basketballplayers.R;
+import abdallah.qasem.basketballplayers.view.ReentrantLock.CounterActivity;
+
+import static java.lang.Thread.sleep;
 
 public class PC_Activity extends AppCompatActivity {
 
+    private static final String TAG = CounterActivity.class.getSimpleName();
 
-    private Object lock = new Object();
+    static Object key = new Object();
+    private static boolean[] buffer;
+    private static int currentSize;
 
-    private static final int BUFFER_MAX_SIZE = 10;
-    String[] buffer = new String[BUFFER_MAX_SIZE];
-    int currentSize = 0;
-
-
-    int added_postion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_);
 
-        produce();
-        produce();
-        consume();
-        produce();
-        produce();
-        produce();
-        consume();
-        produce();
-        produce();
-        produce();
-        consume();
-        produce();
-        produce();
-        produce();
-        consume();
-        produce();
-        produce();
-        produce();
-        consume();
-        produce();
-        produce();
-        produce();
-        consume();
-        produce();
+
+        buffer = new boolean[10];
+        currentSize = 0;
+
+
+        final Producer producer = new Producer();
+        final Consumer consumer = new Consumer();
+
+
+
+        Runnable prodRunn = new Runnable() {
+            @Override
+            public void run() {
+                Log.e(TAG,"Produced...");
+                for (int x = 0; x < 100; x++) {
+                    producer.produce();
+                }
+
+            }
+        };
+
+        Runnable consRunn = new Runnable() {
+            @Override
+            public void run() {
+                Log.e(TAG,"Consumer...");
+                for (int x = 0; x < 100; x++) {
+                    consumer.consume();
+                }
+
+            }
+        };
+
+        Thread prodThread = new Thread(prodRunn);
+        Thread consThread = new Thread(consRunn);
+        prodThread.start();
+        consThread.start();
+
+
 
     }
 
 
-    public void consume() {
-
-        synchronized (lock) {
-            while (currentSize > 0) {
-                currentSize--;
-                Log.e("  currentSize ", " consume  " +currentSize + " =" + buffer[(currentSize)]);
-                buffer[(currentSize)] = "empty";
+    static class Producer {
+        void produce() {
+            synchronized (key) {
 
 
-
-
+                if (currentSize == buffer.length) {
+                    try {
+                        key.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                buffer[currentSize++] = true;
+                Log.e(TAG , "produce "+currentSize +"true");
+                key.notifyAll();
             }
         }
     }
 
-    public void produce() {
-        synchronized (lock) {
-            while (currentSize < (BUFFER_MAX_SIZE )) {
-                buffer[(currentSize)] = "position " + added_postion;
-                Log.e("  currentSize ", " produce "+currentSize+"  add position " + added_postion + " ");
-                ++added_postion;
-                ++currentSize;
+    static class Consumer {
+        void consume() {
+            synchronized (key) {
 
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (currentSize == 0) {
+                    try {
+                        key.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                buffer[--currentSize] = false;
+                Log.e(TAG , "consume  "+currentSize +"false");
+                key.notifyAll();
             }
         }
     }
