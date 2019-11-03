@@ -21,6 +21,7 @@ public class PC_Activity extends AppCompatActivity {
 
     private static int currentSize;
 
+    
 
     private static int producerPortion;
 
