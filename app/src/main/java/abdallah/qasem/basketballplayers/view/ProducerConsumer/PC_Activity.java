@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.view.ReentrantLock.CounterActivity;
@@ -26,6 +27,8 @@ public class PC_Activity extends AppCompatActivity {
 
     static ArrayList<String> MainList = new ArrayList<String>();
     static ArrayList<String> NewList = new ArrayList<String>();
+
+    ReentrantLock lock = new ReentrantLock();
 
 
     @Override
