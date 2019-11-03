@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.view.ReentrantLock.CounterActivity;
 
@@ -15,8 +17,12 @@ public class PC_Activity extends AppCompatActivity {
     private static final String TAG = CounterActivity.class.getSimpleName();
 
     static Object key = new Object();
-    private static boolean[] buffer;
+
     private static int currentSize;
+
+    static ArrayList<String> MainList = new ArrayList<String>();
+
+    static ArrayList<String> NewList = new ArrayList<String>();
 
 
     @Override
@@ -25,7 +31,7 @@ public class PC_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_pc_);
 
 
-        buffer = new boolean[10];
+
         currentSize = 0;
 
 
@@ -38,10 +44,12 @@ public class PC_Activity extends AppCompatActivity {
             @Override
             public void run() {
                 Log.e(TAG,"Produced...");
-                for (int x = 0; x < 100; x++) {
+                for (int x = 0; x < 20; x++) {
                     producer.produce();
                 }
 
+
+                Log.e(TAG , "  Main list size = "+MainList.size());
             }
         };
 
@@ -49,10 +57,11 @@ public class PC_Activity extends AppCompatActivity {
             @Override
             public void run() {
                 Log.e(TAG,"Consumer...");
-                for (int x = 0; x < 100; x++) {
+                for (int x = 0; x < 20; x++) {
                     consumer.consume();
                 }
 
+                Log.e(TAG , "  NewList list size = "+NewList.size());
             }
         };
 
@@ -70,16 +79,19 @@ public class PC_Activity extends AppCompatActivity {
         void produce() {
             synchronized (key) {
 
+                Log.e(TAG , " enter Producer ");
 
-                if (currentSize == buffer.length) {
+                if (currentSize == MainList.size()) {
                     try {
                         key.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                buffer[currentSize++] = true;
-                Log.e(TAG , "produce "+currentSize +"true");
+                Log.e(TAG , " enter Producer 1");
+                String text = " number "+currentSize;
+                MainList.add(text);
+                Log.e(TAG , "produce "+text  +"true");
                 key.notifyAll();
             }
         }
@@ -89,11 +101,7 @@ public class PC_Activity extends AppCompatActivity {
         void consume() {
             synchronized (key) {
 
-                try {
-                    sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
 
                 if (currentSize == 0) {
                     try {
@@ -102,8 +110,9 @@ public class PC_Activity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
-                buffer[--currentSize] = false;
+                -- currentSize;
+                NewList.add(MainList.get(currentSize));
+                MainList.remove(currentSize);
                 Log.e(TAG , "consume  "+currentSize +"false");
                 key.notifyAll();
             }
