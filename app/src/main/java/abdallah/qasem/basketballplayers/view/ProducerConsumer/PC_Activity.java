@@ -109,11 +109,7 @@ public class PC_Activity extends AppCompatActivity {
         consThread = new Thread(consRunn);
         prodThread.start();
         consThread.start();
-     /*   try {
-            consThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+
 
 
     }
