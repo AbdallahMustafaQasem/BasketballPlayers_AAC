@@ -9,6 +9,6 @@ import retrofit2.http.Query;
 
 public interface PlayersApi {
     @GET("players/")
-    Call<PlayersData> getNewsList(@Query("page") int page,
-                                  @Query("per_page") String per_page);
+    Call<PlayersData> getList(@Query("page") int page,
+                              @Query("per_page") String per_page);
 }

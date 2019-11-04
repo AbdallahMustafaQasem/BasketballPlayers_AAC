@@ -3,6 +3,7 @@ package abdallah.qasem.basketballplayers.view.mainScreen;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -68,8 +69,10 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
 
     }
 
+
     public void onClick(View view) {
 
+        Log.e(" test app ", "  onClick  ") ;
         Context context = view.getContext();
         switch (view.getId()) {
             case R.id.open_pager:
@@ -83,6 +86,13 @@ public class MainActivityViewModel extends AndroidViewModel implements Operation
                 break;
         }
 
+    }
+
+
+    public void openAcivity(View view) {
+
+        Intent myIntent = new Intent(view.getContext(), MainActivity.class);
+        view.getContext().startActivity(myIntent);
     }
 
 

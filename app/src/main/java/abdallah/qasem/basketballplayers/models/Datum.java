@@ -1,8 +1,11 @@
 
 package abdallah.qasem.basketballplayers.models;
 
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
@@ -111,28 +114,60 @@ public class Datum {
     }
 
 
-    @BindingAdapter("android:imageUrl")
+  /*  @BindingAdapter("imageUrl")
     public static void loadImage(View view, int id) {
         ImageView imageView = (ImageView) view;
         String ImageURL = "https://cdn2.thecatapi.com/images/" + id + ".jpg";
         Picasso.get().load(ImageURL).error(R.mipmap.ic_launcher).into(imageView);
 
-     /*   RecyclerView recyclerView = new RecyclerView();
-        PlayersAdapter adapter = (PlayersAdapter)recyclerView.getAdapter();
-        adapter.setItems();*/
 
-    }
+    }*/
 
 
-    @BindingAdapter("android:itemColor")
+    @BindingAdapter("itemColor")
     public static void setColor(View view, String position) {
         view.setBackgroundColor(ContextCompat.getColor(view.getContext(), ColorsHelper.getInstance().getColor(position)));
 
     }
 
 
+    @BindingAdapter({"imageUrl", "error"})
+    public static void loadImage(ImageView view, int id, Drawable error) {
+        String ImageURL = "https://cdn2.thecatapi.com/images/" + id + ".jpg";
+        Picasso.get().load(ImageURL).error(error).into(view);
+
+
+    }
+
+
+
+    @BindingAdapter(value = {"imageUrl", "placeholder"}, requireAll = true)
+    public static void setImageUrl(ImageView imageView, int id,
+                                   Drawable placeHolder) {
+        String ImageURL = "https://cdn2.thecatapi.com/images/" + id + ".jpg";
+
+
+        if (placeHolder == null) {
+            Picasso.get().load(ImageURL).into(imageView);
+        }else {
+            Picasso.get().load(ImageURL).error(placeHolder).into(imageView);
+        }
+    }
+
+
+    @BindingAdapter(value = {"firstName", "lastName"},requireAll = true)
+    public static void setName(TextView view, String first , String  last ) {
+        view.setText( first + " " +last);
+    }
+
 
 
 
 
 }
+
+
+
+
+
+

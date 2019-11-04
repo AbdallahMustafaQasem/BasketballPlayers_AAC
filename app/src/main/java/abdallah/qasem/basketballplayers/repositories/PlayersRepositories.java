@@ -1,10 +1,6 @@
 package abdallah.qasem.basketballplayers.repositories;
 
 
-
-
-
-
 import abdallah.qasem.basketballplayers.models.PlayersData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +26,7 @@ public class PlayersRepositories {
         if (operationCallBack!=null)
         operationCallBack.startLoading(page);
 
-        newsApi.getNewsList(page, per_page).enqueue(new Callback<PlayersData>() {
+        newsApi.getList(page, per_page).enqueue(new Callback<PlayersData>() {
             @Override
             public void onResponse(Call<PlayersData> call, Response<PlayersData> response) {
                 if (response.isSuccessful()) {

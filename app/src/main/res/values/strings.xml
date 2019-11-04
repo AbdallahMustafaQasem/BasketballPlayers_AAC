@@ -15,6 +15,11 @@
 
 
     <string name="list_date_format">Date discovered: %1$s</string>
+    <string name="plus">+</string>
+    <string name="multi">*</string>
+    <string name="div">/</string>
+    <string name="toast">Toast</string>
+    <string name="open_activity">open activity</string>
 
 
 </resources>

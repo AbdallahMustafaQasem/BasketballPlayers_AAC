@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
     <data>
+
+        <variable
+            name="viewModel"
+            type="abdallah.qasem.basketballplayers.view.twoWayBinding.TwoWayViewModel" />
+
         <variable
             name="item"
             type="abdallah.qasem.basketballplayers.models.Item" />
@@ -14,33 +18,207 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.TwoWayBinding.TwoWayBindingAcivity">
+        tools:context=".view.twoWayBinding.TwoWayBindingAcivity">
 
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#C2C2C2">
+            android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/tv_text"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@{ item.name.toString()}"
-                android:layout_alignParentEnd="true"
-                android:background="#FFFFFF" />
+                android:layout_height="wrap_content"
+                android:background="#C2C2C2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_email_and_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+
+                    app:email="@{item.email.toString()}"
+                    app:name="@{item.name.toString()}" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    app:randomBackground="@{ ``}" />
+
+                <TextView
+
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
 
 
-            <EditText
-                android:id="@+id/ed_text"
+                    android:text="@{item.email.toString()}" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    app:randomBackground="@{ ``}" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+
+                    android:text="@{ item.name.toString()}" />
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    app:randomBackground="@{ ``}" />
+
+                <EditText
+                    android:id="@+id/ed_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+
+
+                    android:text="@={item.name}" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    app:randomBackground="@{ ``}" />
+
+                <EditText
+                    android:id="@+id/ed_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#FFFFFF"
+
+
+                    android:text="@={item.email}" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    app:randomBackground="@{ ``}" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@={item.name}"
-                android:layout_below="@+id/tv_text"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="50dp"
-                android:background="#FFFFFF" />
-        </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_first_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(viewModel.NumberModelMutableLiveData.firstNum)}"
+                        android:textSize="30sp"
+                        android:gravity="center"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/text_scund_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(viewModel.NumberModelMutableLiveData.secondNum)}"
+                        android:textSize="30sp"
+                        android:gravity="center"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+
+                <Button
+                    android:id="@+id/mul_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()-> viewModel.getMUL()}"
+                    android:text="@string/multi"
+                    android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/plus_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()-> viewModel.getSUM()}"
+                        android:text="@string/plus"
+                        android:layout_weight="1" />
+                <Button
+                    android:id="@+id/div_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()-> viewModel.getDIV()}"
+                    android:text="@string/div"
+                    android:layout_weight="1" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mul_result_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(viewModel.MUL_MutableLiveData)}"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    tools:text="mul result" />
+
+                <TextView
+                    android:id="@+id/plus_result_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(viewModel.SUM_MutableLiveData)}"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    tools:text="plus result" />
+
+                <TextView
+                    android:id="@+id/div_result_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{Integer.toString(viewModel.DIV_MutableLiveData)}"
+                    android:textSize="20sp"
+                   android:layout_weight="1"
+                    tools:text="div result" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:text="@string/toast"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view)->viewModel.showToast(view)}"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:text="@string/open_activity"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view)->viewModel.openAcivity(view)}"
+                />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

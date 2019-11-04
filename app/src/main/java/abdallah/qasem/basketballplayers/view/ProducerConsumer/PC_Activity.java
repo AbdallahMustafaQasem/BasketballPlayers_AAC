@@ -23,19 +23,16 @@ public class PC_Activity extends AppCompatActivity {
 
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-
-    private static int producerPortion;
-
-
     static ArrayList<String> MainList = new ArrayList<String>();
     static ArrayList<String> NewList = new ArrayList<String>();
 
-    Random random = new Random();
-
+    private static int producerPortion;
     public static boolean haveMore = true;
 
-    Thread prodThread;
-    Thread consThread;
+
+
+
+    Random random = new Random();
     private int max = 1000;
     private int min= 1;
 
@@ -105,8 +102,8 @@ public class PC_Activity extends AppCompatActivity {
         };
 
 
-        prodThread = new Thread(prodRunn);
-        consThread = new Thread(consRunn);
+        Thread   prodThread = new Thread(prodRunn);
+        Thread consThread = new Thread(consRunn);
         prodThread.start();
         consThread.start();
 

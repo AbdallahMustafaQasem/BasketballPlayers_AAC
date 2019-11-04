@@ -33,8 +33,10 @@ public class Item extends BaseObservable  {
 
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         Email = email;
+        notifyPropertyChanged(BR.email);
     }
 
 
