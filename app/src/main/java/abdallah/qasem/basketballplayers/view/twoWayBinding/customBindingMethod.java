@@ -53,8 +53,6 @@ public class customBindingMethod  {
 
     @BindingAdapter({"onKeyDone"})
     public static void testAdapter(Button button, final OnKeyPressedListener action) {
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,13 +60,7 @@ public class customBindingMethod  {
                 Log.e(" testAdapter  ", "  testAdapter ");
             }
         });
-
-
     }
-
-
-
-
     public interface OnKeyPressedListener {
 
         void onKeyPressed();
