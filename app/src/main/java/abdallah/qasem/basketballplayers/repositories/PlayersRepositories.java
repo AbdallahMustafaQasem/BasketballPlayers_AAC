@@ -7,12 +7,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlayersRepositories {
-    private static final String TAG = PlayersRepositories.class.getName();
+
 
 
     private PlayersApi newsApi;
 
-    OperationCallBack operationCallBack;
+    private OperationCallBack operationCallBack;
 
 
     public PlayersRepositories() {

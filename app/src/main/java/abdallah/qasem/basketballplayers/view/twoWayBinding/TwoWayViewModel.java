@@ -55,8 +55,8 @@ public class TwoWayViewModel extends AndroidViewModel {
 
     public void openAcivity(View view) {
 
-        Intent myIntent = new Intent(view.getContext(), MainActivity.class);
-        view.getContext().startActivity(myIntent);
+        MainActivity.goToMainActivity(view.getContext());
+
     }
 
 

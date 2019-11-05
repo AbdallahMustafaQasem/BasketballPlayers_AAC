@@ -1,9 +1,12 @@
 package abdallah.qasem.basketballplayers.view.mainScreen;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +18,7 @@ import abdallah.qasem.basketballplayers.models.Datum;
 import abdallah.qasem.basketballplayers.models.LoadingItem;
 
 
-public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CustomClickListener {
 
     private ArrayList<Object> itemList;
     private static final int TYPE_LIST_ITEM = 1;
@@ -78,6 +81,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             PlayerViewHolder viewHolder = (PlayerViewHolder) holder;
             Datum datum = (Datum) itemList.get(position);
             viewHolder.binding.setDatum(datum);
+            viewHolder.binding.setItemClickListener(this);
 
 
         }
@@ -95,6 +99,14 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
+
+    @Override
+    public void imageClicked(Datum datum) {
+        Log.e("PlayersAdapter " , "clicked "+datum.getFirstName());
+
+    }
+
+
     public class PlayerViewHolder extends RecyclerView.ViewHolder {
 
         RowPlayersBinding binding;
@@ -109,6 +121,8 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private class LoadingViewHolder extends RecyclerView.ViewHolder {
         LoadingViewHolder(View view) {
             super(view);
+
+
 
         }
     }

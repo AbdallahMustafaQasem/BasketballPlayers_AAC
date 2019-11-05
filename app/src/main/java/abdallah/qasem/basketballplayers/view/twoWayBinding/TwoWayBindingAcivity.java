@@ -29,8 +29,6 @@ public class TwoWayBindingAcivity extends AppCompatActivity {
 
 
         Item item = new Item("  abdallah qasem ", " abdullah.q");
-
-
         binding.setItem(item);
 
         // set number

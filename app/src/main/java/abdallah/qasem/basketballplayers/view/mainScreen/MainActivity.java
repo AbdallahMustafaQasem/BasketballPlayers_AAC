@@ -6,6 +6,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityMainBinding;
@@ -18,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel mMainActivityViewModel;
     private ActivityMainBinding binding;
     int currentPage = 1;
+
+    public static void goToMainActivity(Context mContext) {
+        Intent login = new Intent(mContext, MainActivity.class);
+        mContext.startActivity(login);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,10 @@
             name="viewModel"
             type="abdallah.qasem.basketballplayers.view.mainScreen.MainActivityViewModel" />
 
+        <variable
+            name="itemClickListener"
+            type="abdallah.qasem.basketballplayers.view.mainScreen.CustomClickListener" />
+
 
     </data>
 
@@ -66,8 +70,8 @@
                 android:layout_height="75dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:onClick="@{() -> itemClickListener.imageClicked(datum)}"
 
-                android:onClick="@{(view)->viewModel.openAcivity(view)}"
                 app:placeholder="@{@drawable/error}"
                 app:imageUrl="@{datum.id}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +98,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="20dp"
                 android:text="@{datum.team.name}"
+
 
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
