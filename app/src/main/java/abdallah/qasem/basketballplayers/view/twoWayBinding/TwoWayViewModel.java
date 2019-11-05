@@ -2,16 +2,18 @@ package abdallah.qasem.basketballplayers.view.twoWayBinding;
 
 import android.app.Application;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.Observable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import abdallah.qasem.basketballplayers.view.mainScreen.MainActivity;
 
-public class TwoWayViewModel extends AndroidViewModel {
+public class TwoWayViewModel extends AndroidViewModel  {
 
 
 
@@ -65,4 +67,9 @@ public class TwoWayViewModel extends AndroidViewModel {
 
         return new NumberModel(40, 20);
     }
+
+
+
+
+
 }
