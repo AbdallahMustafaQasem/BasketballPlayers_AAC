@@ -4,9 +4,13 @@ package abdallah.qasem.basketballplayers.view.twoWayBinding;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
+
 import java.util.Random;
 import abdallah.qasem.basketballplayers.R;
 
@@ -43,6 +47,21 @@ public class customBindingMethod {
 
             }
         });
+    }
+
+
+    @BindingMethods(@BindingMethod(type = CustomButton.class, attribute = "app:onToggle", method = "onClickListener"))
+    public static class CustomButton{
+        private OnToggleListener mToggleListener;
+
+        public interface OnToggleListener {
+            void onToggle(boolean switchPosition);
+        }
+
+        public void setOnToggleListener(OnToggleListener listener) {
+            mToggleListener = listener;
+        }
+
     }
 
 

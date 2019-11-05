@@ -150,8 +150,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:onClickListener="@{viewModel.getMUL()}"
 
-                        app:OnClick="@{viewModel}"
                         android:text="@string/multi" />
 
                     <Button
