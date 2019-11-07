@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.repositories;
+package abdallah.qasem.basketballplayers.view.repositories;
 
 public interface OperationCallBack<T> {
 

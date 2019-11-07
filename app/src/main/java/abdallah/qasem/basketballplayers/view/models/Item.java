@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.models;
+package abdallah.qasem.basketballplayers.view.models;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

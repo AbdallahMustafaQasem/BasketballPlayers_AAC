@@ -1,8 +1,8 @@
-package abdallah.qasem.basketballplayers.repositories;
+package abdallah.qasem.basketballplayers.view.repositories;
 
 
 
-import abdallah.qasem.basketballplayers.models.PlayersData;
+import abdallah.qasem.basketballplayers.view.models.PlayersData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

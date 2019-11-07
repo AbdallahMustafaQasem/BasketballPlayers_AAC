@@ -1,8 +1,7 @@
 
-package abdallah.qasem.basketballplayers.models;
+package abdallah.qasem.basketballplayers.view.models;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
-import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.helpers.ColorsHelper;
 
 public class Datum {

@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import abdallah.qasem.basketballplayers.models.PlayersData;
+import abdallah.qasem.basketballplayers.view.models.PlayersData;
 
 public class BindingMainActivity {
     private static final String TAG = BindingMainActivity.class.getName();

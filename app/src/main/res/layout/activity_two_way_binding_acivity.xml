@@ -10,13 +10,16 @@
             name="viewModel"
             type="abdallah.qasem.basketballplayers.view.twoWayBinding.TwoWayViewModel" />
 
-        <variable
+       <!-- <variable
             name="item"
             type="abdallah.qasem.basketballplayers.models.Item" />
+-->
 
 
 
-
+        <variable
+            name="item"
+            type="abdallah.qasem.basketballplayers.view.models.Item" />
 
 
     </data>

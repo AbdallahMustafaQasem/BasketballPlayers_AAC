@@ -1,4 +1,4 @@
-package abdallah.qasem.basketballplayers.repositories;
+package abdallah.qasem.basketballplayers.view.repositories;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

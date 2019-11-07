@@ -11,9 +11,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import abdallah.qasem.basketballplayers.R;
-import abdallah.qasem.basketballplayers.models.PlayersData;
-import abdallah.qasem.basketballplayers.repositories.OperationCallBack;
-import abdallah.qasem.basketballplayers.repositories.PlayersRepositories;
+import abdallah.qasem.basketballplayers.view.models.PlayersData;
+import abdallah.qasem.basketballplayers.view.repositories.OperationCallBack;
+import abdallah.qasem.basketballplayers.view.repositories.PlayersRepositories;
 import abdallah.qasem.basketballplayers.view.Services.ServiceActivity;
 import abdallah.qasem.basketballplayers.view.viewPager.PagerActivity;
 

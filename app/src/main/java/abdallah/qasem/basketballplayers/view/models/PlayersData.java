@@ -1,5 +1,5 @@
 
-package abdallah.qasem.basketballplayers.models;
+package abdallah.qasem.basketballplayers.view.models;
 
 import java.util.ArrayList;
 import java.util.List;

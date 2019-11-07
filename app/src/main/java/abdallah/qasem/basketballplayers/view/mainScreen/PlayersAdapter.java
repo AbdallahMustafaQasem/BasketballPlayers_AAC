@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -14,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.RowPlayersBinding;
-import abdallah.qasem.basketballplayers.models.Datum;
-import abdallah.qasem.basketballplayers.models.LoadingItem;
+import abdallah.qasem.basketballplayers.view.models.Datum;
+import abdallah.qasem.basketballplayers.view.models.LoadingItem;
 
 
 public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements CustomClickListener {
@@ -80,6 +79,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof PlayerViewHolder) {
             PlayerViewHolder viewHolder = (PlayerViewHolder) holder;
             Datum datum = (Datum) itemList.get(position);
+
             viewHolder.binding.setDatum(datum);
             viewHolder.binding.setItemClickListener(this);
 

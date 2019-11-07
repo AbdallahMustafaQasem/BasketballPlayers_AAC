@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityTwoWayBindingAcivityBinding;
-import abdallah.qasem.basketballplayers.models.Item;
+import abdallah.qasem.basketballplayers.view.models.Item;
 
 public class TwoWayBindingAcivity extends AppCompatActivity {
 

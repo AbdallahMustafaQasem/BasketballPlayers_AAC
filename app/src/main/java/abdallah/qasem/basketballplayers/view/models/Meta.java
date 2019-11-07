@@ -1,5 +1,5 @@
 
-package abdallah.qasem.basketballplayers.models;
+package abdallah.qasem.basketballplayers.view.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

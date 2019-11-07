@@ -6,11 +6,10 @@
 
     <data>
 
+
         <variable
             name="datum"
-            type="abdallah.qasem.basketballplayers.models.Datum" />
-
-
+            type="abdallah.qasem.basketballplayers.view.models.Datum" />
         <variable
             name="viewModel"
             type="abdallah.qasem.basketballplayers.view.mainScreen.MainActivityViewModel" />
