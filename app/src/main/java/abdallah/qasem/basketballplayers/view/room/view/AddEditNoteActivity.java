@@ -18,8 +18,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
 
     public static final String EXTRA_ID = "AddEditNoteActivity.EXTRA_ID" ;
-    ActivityAddNoteBinding binding ;
-
 
     public static final String EXTRA_TITLE =
             "AddEditNoteActivity.EXTRA_TITLE";
@@ -28,6 +26,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_PRIORITY =
             "AddEditNoteActivity.EXTRA_PRIORITY";
 
+    ActivityAddNoteBinding binding ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,8 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_note);
 
+
+        // Binding Adapter
         binding.numberPickerPriority.setMaxValue(10);
         binding.numberPickerPriority.setMinValue(1);
 
