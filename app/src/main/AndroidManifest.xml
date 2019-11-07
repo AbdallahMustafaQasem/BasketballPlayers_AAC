@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".view.ProducerConsumer.PC_Activity"></activity>
-        <activity android:name=".view.twoWayBinding.TwoWayBindingAcivity">
+        <activity android:name=".view.workManager.workerActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +22,14 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".view.ProducerConsumer.PC_Activity" />
+        <activity android:name=".view.twoWayBinding.TwoWayBindingAcivity">
+
+        </activity>
         <activity android:name=".view.ReentrantLock.CounterActivity" />
         <activity android:name=".view.Services.ServiceActivity" />
         <activity android:name=".view.viewPager.PagerActivity" />
-        <activity android:name=".view.mainScreen.MainActivity">
-
-        </activity>
+        <activity android:name=".view.mainScreen.MainActivity"></activity>
 
         <service android:name=".view.Services.ServicesCounter" />
         <service android:name=".view.Services.ServiceBlockThread" />

@@ -1,7 +1,9 @@
 package abdallah.qasem.basketballplayers.view.Services;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityServiceBinding;
 
@@ -42,10 +45,10 @@ public class ServiceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                switch(ServiceBlockThread.status) {
+                switch (ServiceBlockThread.status) {
 
                     case play:
-                        Log.e(TAG, "  play  "  );
+                        Log.e(TAG, "  play  ");
                         binding.buStartService.setText(R.string.resume);
                         ServiceBlockThread.pause();
                         break;
@@ -75,11 +78,7 @@ public class ServiceActivity extends AppCompatActivity {
         });
 
 
-
-        }
-
-
-
+    }
 
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {

@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="@{()-> viewModel.getSUM()}"
+                        app:onKeyDone="@{()-> viewModel.getSUM()}"
                         android:text="@string/plus" />
 
                     <Button
@@ -173,7 +173,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:onClick="@{()-> viewModel.getDIV()}"
+                        app:onKeyDone="@{()-> viewModel.getDIV()}"
                         android:text="@string/div" />
                 </LinearLayout>
 
