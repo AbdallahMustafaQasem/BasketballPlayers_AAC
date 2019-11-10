@@ -17,7 +17,6 @@ import java.util.List;
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.RowNoteBinding;
 
-import abdallah.qasem.basketballplayers.generated.callback.OnClickListener;
 import abdallah.qasem.basketballplayers.view.room.models.Note;
 
 public class NoteListsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

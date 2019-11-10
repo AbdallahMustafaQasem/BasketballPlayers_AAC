@@ -1,15 +1,14 @@
 package abdallah.qasem.basketballplayers.view.room.models;
 
 
-import android.view.View;
+
 import android.widget.NumberPicker;
 
-import androidx.core.content.ContextCompat;
+
 import androidx.databinding.BindingAdapter;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import abdallah.qasem.basketballplayers.helpers.ColorsHelper;
 
 @Entity(tableName = "note_table")
 public class Note {

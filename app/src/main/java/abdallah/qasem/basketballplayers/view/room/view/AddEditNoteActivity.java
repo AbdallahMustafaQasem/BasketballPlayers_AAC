@@ -71,6 +71,11 @@ public class AddEditNoteActivity extends AppCompatActivity {
     }
 
     private void saveNote() {
+        if (note.getTitle()==null|| note.getDescription()==null)
+        {
+            Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (note.getTitle().trim().isEmpty() || note.getDescription().trim().isEmpty()) {
             Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
             return;
