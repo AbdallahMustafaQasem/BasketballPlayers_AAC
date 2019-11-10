@@ -51,6 +51,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -70,10 +71,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
     }
 
     private void saveNote() {
-
-
-
-
         if (note.getTitle().trim().isEmpty() || note.getDescription().trim().isEmpty()) {
             Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
             return;
