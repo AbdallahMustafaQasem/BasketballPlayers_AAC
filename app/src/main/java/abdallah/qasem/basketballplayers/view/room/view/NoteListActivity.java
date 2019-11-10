@@ -23,6 +23,8 @@ public class NoteListActivity extends AppCompatActivity {
 
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
+
+
     ActivityNoteListBinding binding;
     private NoteListViewModel viewModel;
     LinearLayoutManager linerLayoutManager;
@@ -41,9 +43,9 @@ public class NoteListActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
 
 
-        viewModel = ViewModelProviders.of(this).get(NoteListViewModel.class);
-
         initRecyclerView();
+
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +54,7 @@ public class NoteListActivity extends AppCompatActivity {
             }
         });
 
-
+        // this for delete item by moving item to left or right
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
