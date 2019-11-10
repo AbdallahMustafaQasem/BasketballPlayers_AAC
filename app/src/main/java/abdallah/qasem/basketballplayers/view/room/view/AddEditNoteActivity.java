@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import abdallah.qasem.basketballplayers.R;
 import abdallah.qasem.basketballplayers.databinding.ActivityAddNoteBinding;
+import abdallah.qasem.basketballplayers.view.room.models.Note;
 
 public class AddEditNoteActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
             "AddEditNoteActivity.EXTRA_PRIORITY";
 
     ActivityAddNoteBinding binding ;
+    Note note = new Note() ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +36,16 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_note);
 
-
-        // Binding Adapter
-        binding.numberPickerPriority.setMaxValue(10);
-        binding.numberPickerPriority.setMinValue(1);
-
-
-
-
+        binding.setNote(note);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-
-
         Intent intent = getIntent();
-
         if (intent.hasExtra(EXTRA_ID))
         {
             setTitle("Edit Note");
-            binding.editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
-            binding.editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-            binding.numberPickerPriority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
+            note.setId(intent.getIntExtra(EXTRA_ID, -1));
+            note.setPriority(intent.getIntExtra(EXTRA_PRIORITY, 1));
+            note.setDescription(intent.getStringExtra(EXTRA_DESCRIPTION));
+            note.setTitle(intent.getStringExtra(EXTRA_TITLE));
         }else {
             setTitle("Add Note");
         }
@@ -78,19 +71,18 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     private void saveNote() {
 
-        String title =  binding.editTextTitle.getText().toString();
-        String description = binding.editTextDescription.getText().toString();
-        int priority = binding.numberPickerPriority.getValue();
 
-        if (title.trim().isEmpty() || description.trim().isEmpty()) {
+
+
+        if (note.getTitle().trim().isEmpty() || note.getDescription().trim().isEmpty()) {
             Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Intent data = new Intent();
-        data.putExtra(EXTRA_TITLE, title);
-        data.putExtra(EXTRA_DESCRIPTION, description);
-        data.putExtra(EXTRA_PRIORITY, priority);
+        data.putExtra(EXTRA_TITLE, note.getTitle());
+        data.putExtra(EXTRA_DESCRIPTION, note.getDescription());
+        data.putExtra(EXTRA_PRIORITY, binding.numberPickerPriority.getValue());
 
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
