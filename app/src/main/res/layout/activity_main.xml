@@ -29,6 +29,8 @@
             android:layout_above="@+id/lin"
             android:data="@{viewModel.mPlayersData}"
             android:scrollbarAlwaysDrawVerticalTrack="true"
+            tools:listitem="@layout/row_players"
+
             android:scrollbars="vertical"
 
             />
