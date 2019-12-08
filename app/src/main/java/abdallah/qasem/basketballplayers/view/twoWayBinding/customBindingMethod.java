@@ -21,6 +21,15 @@ public class customBindingMethod  {
             textView.setText(" Email  is :  " + email + "   Name is : " + name);
 
         }
+
+      /*  if (email != null & name != null) {
+            textView.setText(" Email  is :  " + email + "   Name is : " + name);
+
+        }
+        if (email != null & name != null) {
+            textView.setText(" Email  is :  " + email + "   Name is : " + name);
+
+        }*/
     }
 
     @BindingAdapter({"randomBackground"})
